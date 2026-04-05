@@ -12,6 +12,8 @@ public sealed class BlogDbContext(DbContextOptions<BlogDbContext> options)
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Modules.Blog.Domain.Authors.Author> Authors => Set<Modules.Blog.Domain.Authors.Author>();
     public DbSet<Modules.Blog.Domain.Bookmarks.Bookmark> Bookmarks => Set<Modules.Blog.Domain.Bookmarks.Bookmark>();
+    public DbSet<Modules.Blog.Domain.Comments.Comment> Comments => Set<Modules.Blog.Domain.Comments.Comment>();
+    public DbSet<Modules.Blog.Domain.Tags.Tag> Tags => Set<Modules.Blog.Domain.Tags.Tag>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -53,6 +55,29 @@ public sealed class BlogDbContext(DbContextOptions<BlogDbContext> options)
             builder.HasOne<Modules.Blog.Domain.Articles.Article>()
                 .WithMany()
                 .HasForeignKey(b => b.ArticleId);
+        });
+
+        modelBuilder.Entity<Modules.Blog.Domain.Comments.Comment>(builder =>
+        {
+            builder.Property(c => c.Content).HasMaxLength(1000).IsRequired();
+
+            builder.HasOne<Modules.Blog.Domain.Articles.Article>()
+                .WithMany()
+                .HasForeignKey(c => c.ArticleId);
+
+            builder.HasOne<Modules.Blog.Domain.Comments.Comment>()
+                .WithMany()
+                .HasForeignKey(c => c.ParentCommentId)
+                .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<Modules.Blog.Domain.Tags.Tag>(builder =>
+        {
+            builder.HasKey(t => t.Id);
+            builder.HasIndex(t => t.Slug).IsUnique();
+            builder.Property(t => t.Name).HasMaxLength(50).IsRequired();
+            builder.Property(t => t.Slug).HasMaxLength(50).IsRequired();
+            // EF Core will automatically create the Many-to-Many relationship based on navigation properties
         });
 
         modelBuilder.ApplyConfiguration(new Modules.Common.Infrastructure.Outbox.OutboxMessageConfiguration());

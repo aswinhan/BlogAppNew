@@ -14,6 +14,9 @@ public sealed class Article : Entity
     public bool IsPublished { get; private set; }
     public Guid CategoryId { get; private set; }
 
+    private readonly List<Modules.Blog.Domain.Tags.Tag> _tags = [];
+    public IReadOnlyCollection<Modules.Blog.Domain.Tags.Tag> Tags => _tags.AsReadOnly();
+
     private Article()
     {
         Title = default!;
@@ -50,6 +53,11 @@ public sealed class Article : Entity
 
         // This event will trigger the Outbox pattern later
         RaiseDomainEvent(new ArticlePublishedDomainEvent(Id, Title));
+    }
+
+    public void AddTags(IEnumerable<Modules.Blog.Domain.Tags.Tag> tags)
+    {
+        _tags.AddRange(tags);
     }
 
     private static string PunctuationToStrip() => ".,?;:'\"!@#$%^&*()_+={}[]|\\<>/~`";
