@@ -10,6 +10,7 @@ public sealed class User : Entity
     public string PasswordHash { get; private set; }
     public string FirstName { get; private set; }
     public string LastName { get; private set; }
+    public string? AvatarUrl { get; private set; }
 
     // Satisfy strict nullability for EF Core reflection
     private User()
@@ -20,7 +21,7 @@ public sealed class User : Entity
         LastName = default!;
     }
 
-    public static User Create(string email, string passwordHash, string firstName, string lastName)
+    public static User Create(string email, string passwordHash, string firstName, string lastName, string? avatarUrl = null)
     {
         var user = new User
         {
@@ -28,10 +29,11 @@ public sealed class User : Entity
             Email = email,
             PasswordHash = passwordHash,
             FirstName = firstName,
-            LastName = lastName
+            LastName = lastName,
+            AvatarUrl = avatarUrl
         };
 
-        user.RaiseDomainEvent(new UserRegisteredDomainEvent(user.Id, user.Email, user.FirstName));
+        user.RaiseDomainEvent(new UserRegisteredDomainEvent(user.Id, user.Email, user.FirstName, user.AvatarUrl));
 
         return user;
     }

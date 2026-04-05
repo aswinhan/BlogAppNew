@@ -9,6 +9,7 @@ public sealed class Article : Entity
     public string Title { get; private set; }
     public string Slug { get; private set; }
     public string Content { get; private set; }
+    public string? CoverImageUrl { get; private set; }
     public Guid AuthorId { get; private set; }
     public bool IsPublished { get; private set; }
     public Guid CategoryId { get; private set; }
@@ -20,7 +21,7 @@ public sealed class Article : Entity
         Content = default!;
     }
 
-    public static Article Create(string title, string content, Guid authorId, Guid categoryId)
+    public static Article Create(string title, string content, Guid authorId, Guid categoryId, string? coverImageUrl = null)
     {
         // Basic slug generation (in a real app, use a robust Regex/Slugifier)
         var slug = title.ToLower().Replace(" ", "-").Replace(PunctuationToStrip(), "");
@@ -31,6 +32,7 @@ public sealed class Article : Entity
             Title = title,
             Slug = slug,
             Content = content,
+            CoverImageUrl = coverImageUrl,
             AuthorId = authorId,
             IsPublished = false,
             CategoryId = categoryId

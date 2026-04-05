@@ -84,6 +84,18 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddHostedService<DigitalPlatform.Api.BackgroundJobs.BlogOutboxProcessor>();
 
+var useAzure = builder.Configuration.GetValue<bool>("Storage:UseAzure");
+if (useAzure)
+{
+    var blobConn = builder.Configuration.GetConnectionString("BlobStorage");
+    builder.Services.AddSingleton(x => new Azure.Storage.Blobs.BlobServiceClient(blobConn));
+    builder.Services.AddScoped<Modules.Common.Application.Storage.IFileService, Modules.Common.Infrastructure.Storage.AzureBlobFileService>();
+}
+else
+{
+    builder.Services.AddScoped<Modules.Common.Application.Storage.IFileService, Modules.Common.Infrastructure.Storage.LocalFileService>();
+}
+
 var app = builder.Build();
 
 // 7. ENABLE SWAGGER UI IN PIPELINE
