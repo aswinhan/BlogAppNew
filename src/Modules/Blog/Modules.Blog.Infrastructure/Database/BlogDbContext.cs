@@ -11,6 +11,7 @@ public sealed class BlogDbContext(DbContextOptions<BlogDbContext> options)
     public DbSet<Article> Articles => Set<Article>();
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Modules.Blog.Domain.Authors.Author> Authors => Set<Modules.Blog.Domain.Authors.Author>();
+    public DbSet<Modules.Blog.Domain.Bookmarks.Bookmark> Bookmarks => Set<Modules.Blog.Domain.Bookmarks.Bookmark>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -44,6 +45,14 @@ public sealed class BlogDbContext(DbContextOptions<BlogDbContext> options)
             builder.HasKey(a => a.Id);
             builder.Property(a => a.Email).HasMaxLength(255).IsRequired();
             builder.Property(a => a.Name).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<Modules.Blog.Domain.Bookmarks.Bookmark>(builder =>
+        {
+            builder.HasKey(b => new { b.UserId, b.ArticleId });
+            builder.HasOne<Modules.Blog.Domain.Articles.Article>()
+                .WithMany()
+                .HasForeignKey(b => b.ArticleId);
         });
 
         modelBuilder.ApplyConfiguration(new Modules.Common.Infrastructure.Outbox.OutboxMessageConfiguration());

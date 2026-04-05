@@ -10,5 +10,6 @@ public interface IBlogDbContext
     DbSet<Article> Articles { get; }
     DbSet<Category> Categories { get; }
     DbSet<Modules.Blog.Domain.Authors.Author> Authors { get; }
+    DbSet<Modules.Blog.Domain.Bookmarks.Bookmark> Bookmarks { get; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
