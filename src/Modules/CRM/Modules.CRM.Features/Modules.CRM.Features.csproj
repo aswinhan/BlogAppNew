@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="MediatR" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\Common\Modules.Common.API\Modules.Common.API.csproj" />
+        <ProjectReference Include="..\..\Common\Modules.Common.Application\Modules.Common.Application.csproj" />
+        <ProjectReference Include="..\Modules.CRM.Domain\Modules.CRM.Domain.csproj" />
+        <ProjectReference Include="..\Modules.CRM.PublicApi\Modules.CRM.PublicApi.csproj" />
+        <ProjectReference Include="..\..\Blog\Modules.Blog.Domain\Modules.Blog.Domain.csproj" />
+    </ItemGroup>
+</Project>

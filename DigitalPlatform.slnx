@@ -1,0 +1,36 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/DigitalPlatform.Api/DigitalPlatform.Api.csproj" />
+    <Project Path="src/DigitalPlatform.AppHost/DigitalPlatform.AppHost.csproj" />
+    <Project Path="src/DigitalPlatform.ServiceDefaults/DigitalPlatform.ServiceDefaults.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/" />
+  <Folder Name="/src/Modules/Blog/">
+    <Project Path="src/Modules/Blog/Modules.Blog.Domain/Modules.Blog.Domain.csproj" />
+    <Project Path="src/Modules/Blog/Modules.Blog.Features/Modules.Blog.Features.csproj" />
+    <Project Path="src/Modules/Blog/Modules.Blog.Infrastructure/Modules.Blog.Infrastructure.csproj" />
+    <Project Path="src/Modules/Blog/Modules.Blog.PublicApi/Modules.Blog.PublicApi.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Common/">
+    <Project Path="src/Modules/Common/Modules.Common.API/Modules.Common.API.csproj" />
+    <Project Path="src/Modules/Common/Modules.Common.Application/Modules.Common.Application.csproj" />
+    <Project Path="src/Modules/Common/Modules.Common.Domain/Modules.Common.Domain.csproj" />
+    <Project Path="src/Modules/Common/Modules.Common.Infrastructure/Modules.Common.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/CRM/">
+    <Project Path="src/Modules/CRM/Modules.CRM.Domain/Modules.CRM.Domain.csproj" />
+    <Project Path="src/Modules/CRM/Modules.CRM.Features/Modules.CRM.Features.csproj" />
+    <Project Path="src/Modules/CRM/Modules.CRM.Infrastructure/Modules.CRM.Infrastructure.csproj" />
+    <Project Path="src/Modules/CRM/Modules.CRM.PublicApi/Modules.CRM.PublicApi.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Identity/">
+    <Project Path="src/Modules/Identity/Modules.Identity.Domain/Modules.Identity.Domain.csproj" />
+    <Project Path="src/Modules/Identity/Modules.Identity.Features/Modules.Identity.Features.csproj" />
+    <Project Path="src/Modules/Identity/Modules.Identity.Infrastructure/Modules.Identity.Infrastructure.csproj" />
+    <Project Path="src/Modules/Identity/Modules.Identity.PublicApi/Modules.Identity.PublicApi.csproj" />
+  </Folder>
+</Solution>

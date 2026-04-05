@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="MediatR" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\Common\Modules.Common.API\Modules.Common.API.csproj" />
+        <ProjectReference Include="..\..\Common\Modules.Common.Application\Modules.Common.Application.csproj" />
+        <ProjectReference Include="..\Modules.Blog.Domain\Modules.Blog.Domain.csproj" />
+        <ProjectReference Include="..\Modules.Blog.PublicApi\Modules.Blog.PublicApi.csproj" />
+        <ProjectReference Include="..\..\Identity\Modules.Identity.Domain\Modules.Identity.Domain.csproj" />
+    </ItemGroup>
+</Project>
