@@ -98,6 +98,8 @@ else
 
 var app = builder.Build();
 
+app.UseStaticFiles();
+
 // 7. ENABLE SWAGGER UI IN PIPELINE
 if (app.Environment.IsDevelopment())
 {
